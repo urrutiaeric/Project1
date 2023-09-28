@@ -7,12 +7,15 @@ class Students:
         
 
     def getname(name):
+        name = input("Student Name: ")
         return name
     
     def getidnum(idnum):
+        idnum = input("Student ID number: ")
         return idnum
     
     def getcourses(courses):
+        
         return courses
     
     def getgpa(gpa):
