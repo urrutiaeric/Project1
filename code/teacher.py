@@ -50,7 +50,7 @@ class Teacher:
                 teachers = cursor.fetchall()
                 for teacher in teachers:
                     print(f"Teacher ID: {teacher[0]}, Teacher Name: {teacher[1]}")
-                    conn.close()
+                conn.close()
             except sqlite3.Error as e:
                 print(e)
 
