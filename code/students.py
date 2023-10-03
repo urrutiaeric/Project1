@@ -19,7 +19,7 @@ class Students:
 
     
     def create_table(self.database, self.table):
-        conn = Course.get_connection(self.database)
+        conn = Student.get_connection(self.database)
         if conn:
             try:
                 cursor = conn.cursor()
@@ -27,7 +27,7 @@ class Students:
                     CREATE TABLE IF NOT EXISTS {self.table} (
                         id INTEGER PRIMARY KEY,
                         student_name TEXT,
-                        student id INTEGER,
+                        student_id INTEGER,
                         student_courses TEXT,
                         student_gpa FLOAT
                     )
@@ -38,9 +38,17 @@ class Students:
                 print(e)
 
     def add_student(name):
-        
+        flagvalidation = True
+        student_name = t1.get("1.0", END)
+        student_idnum = t2.get("1.0", END)
+        conn = Student.get_connection(self.database)
+        create_student = f''' INSERT INTO Student(student_name, student_id) VALUES({student_name},{student_idnum})'''
+        curr = conn.cursor()
+        curr.execute(create_student)
+        conn.commit
+        return curr.lastrowid
 
-        return name
+    def add_courses()
     
     
     
