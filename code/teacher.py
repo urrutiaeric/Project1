@@ -1,10 +1,9 @@
 import sqlite3
 
 class Teacher:
-    def __init__(self, teacher_id, teacher_name, courses_taught):
+    def __init__(self, teacher_id, teacher_name):
         self.teacher_id = teacher_id
         self.teacher_name = teacher_name
-        self.courses_taught = courses_taught
 
     def get_connection(database_name):
         try:
@@ -18,23 +17,23 @@ class Teacher:
         conn = Teacher.get_connection(database_name)
         if conn: 
             try:
-                cursor = con.cursor()
+                cursor = conn.cursor()
                 cursor.execute(f'''
-                               CREATE TABLE IF NONE EXISTS {table_name} (id INTEGER PRIMARY KEY, teacher_id TEXT, teacher_name TEXT, courses_taught TEXT)''')
+                               CREATE TABLE IF NONE EXISTS {table_name} (id INTEGER PRIMARY KEY, teacher_id TEXT, teacher_name TEXT)''')
                 conn.commit()
                 conn.close()
             except sqlite3.Error as e:
                 print(e)
 
-    def insert_teacher(database_name, table_name, teacher_id, teacher_name, courses_taught):
+    def insert_teacher(database_name, table_name, teacher_id, teacher_name):
         conn = Teacher.gett_connection(database_name)
         if conn:
             try:
                 cursor = conn.cursor()
                 cursor.execute(f'''
-                               INSERT INTO {table_name} (teacher_id, teacher_name, courses_taught)
+                               INSERT INTO {table_name} (teacher_id, teacher_name)
                                VALUES (?, ?)
-                               ''', (teacher_id, teacher_name, courses_taught))
+                               ''', (teacher_id, teacher_name))
                 conn.commit()
                 conn.close()
             except sqlite3.Error as e:
@@ -50,8 +49,8 @@ class Teacher:
                                ''')
                 teachers = cursor.fetchall()
                 for teacher in teachers:
-                    print(f"Teacher ID: {teacher[0]}, Teacher Name: {teacher[1]}, Courses Taught: {teacher[2]}")
-                    conn.close()
+                    print(f"Teacher ID: {teacher[0]}, Teacher Name: {teacher[1]}")
+                conn.close()
             except sqlite3.Error as e:
                 print(e)
 
@@ -61,6 +60,4 @@ class Teacher:
     def get_teacher_name(teacher_name):
         return teacher_name
     
-    def get_courses_taught(courses_taught):
-        return courses_taught
     
