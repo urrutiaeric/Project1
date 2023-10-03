@@ -18,7 +18,7 @@ class Teacher:
         conn = Teacher.get_connection(database_name)
         if conn: 
             try:
-                cursor = con.cursor()
+                cursor = conn.cursor()
                 cursor.execute(f'''
                                CREATE TABLE IF NONE EXISTS {table_name} (id INTEGER PRIMARY KEY, teacher_id TEXT, teacher_name TEXT, courses_taught TEXT)''')
                 conn.commit()
