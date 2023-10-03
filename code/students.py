@@ -37,19 +37,10 @@ class Students:
             except sqlite3.Error as e:
                 print(e)
 
-    def get_name(name):
+    def add_student(name):
         
 
         return name
     
-    def getidnum(idnum):
-        idnum = input("Student ID number: ")
-        return idnum
     
-    def getcourses(courses):
-
-        return courses
-    
-    def getgpa(gpa):
-        return gpa
     
